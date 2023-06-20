@@ -11,10 +11,10 @@ import io
 ###### create class ######
 ##########################
 
-# example of key id https://d-9067613818.awsapps.com/start#/
-# aws_access_key_id='ASIAXX5SD4DTFG5YRLX7'
-# aws_secret_access_key='FjGsVqZrmnVbmEts7EmN7n7R8pqfwi7vFEP7QZAG'
-# aws_session_token='IQoJb3JpZ2luX2VjECgaCXVzLWVhc3QtMSJHMEUCIBAYuTl5OHvTrNK5CCcZiuY/AjOso6vY4+Yuzhb6ZYbmAiEA7V3R3Azh8u2zYhBnrJi3oICmwmm3weioJGmaf7k7zwwqkwMIof//////////ARABGgw1MzI0MTI2MjEwMzAiDKraE33cw2xeQfZm6irnAh+npfjd1sWi+kpTc1WLuzT/lMj51MLA3W4CaNX/FebViHdtwPSFCvXzxHcuOb6igQOoZyy1+fWqorNCM5fuj1NFlzljS+Xtmb84SUpwAV/mJGHAjl4nZE11eop1UZytvE+fFoThpKz8rmZW0r3oEh8BqyCI9sqvYM3E8LadOngOExNo3VujXS0S79Eetpgr7b1PqT8rMj2VrFLJPq+T+W1juUuCBqDnHpoM4wEsXIZdKGKGsWR9b2eR4pnsO8bAoZew86dx2GFjZ0MSC7vY075nlLsM7KgENtVCHdlYUzjs9JE5/5h+9tdQAcFn9tp+6yXp2ZWdnshwA/XWthH0gJPlDYp707hELPd3lvl1QTwtIkvjhFjETccRt6EkBYq0BRMyge4cABG/EFH29RpCR19DJtl2h1Q6lZSMBFjOxBPEWd+z7DlpH6QQ/j7qbAlPC4frZvdORRhm8osXFqLtvtpwoChp1O1zMNGxl5gGOqYBNboeGsg+0solaFHZtxg3sx9Z2ZF2j/BWf4st5DHpLxurWy/i/kKBkwi16ZjbNqyMl1wWKupoBpmELMpJuJLpXftKTnadK1jcMAMEmX8H5fSjY1uJCwruWSHxC2piSo1dregxgZH/aF0pxIK4V/fP/SpvAtGfN2DCt0kFtmrm4waLG0diC/RYBjm4fL7b1EmJC3bLw02LBYC3dpTRUUNLCtgUEoRtkw=='
+# example of key id https://d-90XXXXX3818.awsapps.com/start#/
+# aws_access_key_id='ASIAXXXXXXXXXXLX7'
+# aws_secret_access_key='FjGsVqZrmnVXXXXXXXXXXXP7QZAG'
+# aws_session_token='IQoJb3JpZ2luX2VjEXXXXXXXXXXmm3weioJGmaf7k7zwwqkwMIof//////////ARABGgw1MzI0MTI2MjEwMzAiDKraE33cw2xeQfZm6irnAh+npfjd1sWi+kpTc1WLuzT/lMj51MLA3W4CaNX/FebViHdtwPSFCvXzxHcuOb6igQOoZyy1+fWqorNCM5fuj1NFlzljS+Xtmb84SUpwAV/mJGHAjl4nZE11eop1UZytvE+fFoThpKz8rmZW0r3oEh8BqyCI9sqvYM3E8LadOngOExNo3VujXS0S79Eetpgr7b1PqT8rMj2VrFLJPq+T+W1juUuCBqDnHpoM4wEsXIZdKGKGsWR9b2eR4pnsO8bAoZew86dx2GFjZ0MSC7vY075nlLsM7KgENtVCHdlYUzjs9JE5/5h+9tdQAcFn9tp+6yXp2ZWdnshwA/XWthH0gJPlDYp707hELPd3lvl1QTwtIkvjhFjETccRt6EkBYq0BRMyge4cABG/EFH29RpCR19DJtl2h1Q6lZSMBFjOxBPEWd+z7DlpH6QQ/j7qbAlPC4frZvdORRhm8osXFqLtvtpwoChp1O1zMNGxl5gGOqYBNboeGsg+0solaFHZtxg3sx9Z2ZF2j/BWf4st5DHpLxurWy/i/kKBkwi16ZjbNqyMl1wWKupoBpmELMpJuJLpXftKTnadK1jcMAMEmX8H5fSjY1uJCwruWSHxC2piSo1dregxgZH/aF0pxIK4V/fP/SpvAtGfN2DCt0kFtmrm4waLG0diC/RYBjm4fL7b1EmJC3bLw02LBYC3dpTRUUNLCtgUEoRtkw=='
 
 class ConnS3:
     """Class for S3"""
