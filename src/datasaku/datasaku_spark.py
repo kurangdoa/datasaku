@@ -2,8 +2,11 @@
 import socket
 from contextlib import contextmanager
 import findspark
+findspark.init()
+import pyspark
+from pyspark.sql import SparkSession, functions as fs
 
-class DatasakuSparkIceberg:
+class DatasakuSparkNessieMinioIceberg:
 
     def __init__(self
                  , spark_home:str
@@ -13,8 +16,6 @@ class DatasakuSparkIceberg:
                  , minio_endpoint_uri:str="http://minio-service.minio-dev.svc.cluster.local:6544"
                  , nessie_catalog_uri:str="http://nessie-service.nessie-dev.svc.cluster.local:6788/api/v1"
                 ):
-        findspark.init(spark_home=spark_home)
-        import pyspark
 
         self.spark_master_uri = spark_master_uri
         self.minio_endpoint_uri = minio_endpoint_uri
@@ -50,11 +51,22 @@ class DatasakuSparkIceberg:
         # self.spark = SparkSession.builder.config(conf=conf).getOrCreate()
 
     @contextmanager
-    def spark_session(self):
-        from pyspark.sql import SparkSession
+    def spark_session_context(self):
         spark = SparkSession.builder.config(conf=self.spark_conf).getOrCreate()
         try:
             yield spark
         finally:
             spark.stop()
+
+    def spark_session(self):
+        self.spark_context = pyspark.SparkContext(conf=self.spark_conf)
+        spark = SparkSession.builder.config(conf=self.spark_conf).getOrCreate()
+        return spark
         
+    def standarized_column_name(self, sdf:pyspark.sql.DataFrame):
+        sdf = sdf.toDF(*[(x.lower().strip().replace(' ', '_')) for x in sdf.columns])
+        return sdf
+
+    def trim_all_column(self, sdf: pyspark.sql.DataFrame):
+        sdf = sdf.select([fs.trim(fs.col(c)).alias(c) for c in sdf.columns])
+        return sdf
