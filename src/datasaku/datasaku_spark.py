@@ -62,11 +62,13 @@ class DatasakuSparkNessieMinioIceberg:
         self.spark_context = pyspark.SparkContext(conf=self.spark_conf)
         spark = SparkSession.builder.config(conf=self.spark_conf).getOrCreate()
         return spark
-        
-    def standarized_column_name(self, sdf:pyspark.sql.DataFrame):
+    
+    @staticmethod
+    def standarized_column_name(sdf:pyspark.sql.DataFrame):
         sdf = sdf.toDF(*[(x.lower().strip().replace(' ', '_')) for x in sdf.columns])
         return sdf
 
-    def trim_all_column(self, sdf: pyspark.sql.DataFrame):
+    @staticmethod
+    def trim_all_column(sdf: pyspark.sql.DataFrame):
         sdf = sdf.select([fs.trim(fs.col(c)).alias(c) for c in sdf.columns])
         return sdf
