@@ -61,6 +61,7 @@ class DatasakuSparkNessieMinioIceberg:
     def spark_session(self):
         self.spark_context = pyspark.SparkContext(conf=self.spark_conf)
         spark = SparkSession.builder.config(conf=self.spark_conf).getOrCreate()
+        self.spark = spark
         return spark
     
     @staticmethod
@@ -72,3 +73,15 @@ class DatasakuSparkNessieMinioIceberg:
     def trim_all_column(sdf: pyspark.sql.DataFrame):
         sdf = sdf.select([fs.trim(fs.col(c)).alias(c) for c in sdf.columns])
         return sdf
+
+    def dataframe_append(self, sdf: pyspark.sql.DataFrame, table_path: str):
+        if self.spark._jsparkSession.catalog().tableExists(table_path):
+            sdf.writeTo(table_path).append()
+        else:
+            sdf.writeTo(table_path).create()
+    
+    def namespace_create(self, namespace:str):
+        if namespace not in self.spark.sql("SHOW NAMESPACES").toPandas()['namespace'].to_list():
+            self.spark.sql(f"CREATE NAMESPACE {namespace}")
+        else:
+            return "namespace already exist"
