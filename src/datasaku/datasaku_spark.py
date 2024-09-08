@@ -74,11 +74,18 @@ class DatasakuSparkNessieMinioIceberg:
         sdf = sdf.select([fs.trim(fs.col(c)).alias(c) for c in sdf.columns])
         return sdf
 
-    def dataframe_append(self, sdf: pyspark.sql.DataFrame, table_path: str):
-        if self.spark._jsparkSession.catalog().tableExists(table_path):
-            sdf.writeTo(table_path).append()
-        else:
-            sdf.writeTo(table_path).create()
+    def dataframe_write(self
+                            , sdf: pyspark.sql.DataFrame
+                            , table_path: str
+                            , mode: str
+                            ):
+        if mode == 'append':
+            if self.spark._jsparkSession.catalog().tableExists(table_path):
+                sdf.writeTo(table_path).append()
+            else:
+                sdf.writeTo(table_path).create()
+        elif mode == 'overwrite':
+            sdf.writeTo(table_path).createOrReplace()
     
     def namespace_create(self, namespace:str):
         if namespace not in self.spark.sql("SHOW NAMESPACES").toPandas()['namespace'].to_list():
